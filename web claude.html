@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Canard Noir - Bebek Terenak di Dunia</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: #0a0a0a;
+            color: #f5f5f5;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d1810 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: moveGrid 20s linear infinite;
+        }
+
+        @keyframes moveGrid {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .hero-content {
+            z-index: 2;
+            padding: 2rem;
+        }
+
+        .logo {
+            font-size: 4rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #d4af37 0%, #f4e4c1 50%, #d4af37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.3); }
+        }
+
+        .tagline {
+            font-size: 1.5rem;
+            color: #d4af37;
+            margin-bottom: 3rem;
+            letter-spacing: 3px;
+            font-style: italic;
+        }
+
+        .cta-btn {
+            background: linear-gradient(135deg, #d4af37 0%, #f4e4c1 100%);
+            color: #1a1a1a;
+            padding: 1.2rem 3rem;
+            border: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            letter-spacing: 2px;
+            transition: all 0.4s;
+            text-transform: uppercase;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.5);
+        }
+
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, #d4af37 0%, #f4e4c1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .menu-card {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            border: 1px solid #d4af37;
+            padding: 2rem;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .menu-card:hover::before {
+            opacity: 1;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(212, 175, 55, 0.3);
+            border-color: #f4e4c1;
+        }
+
+        .bestseller {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #d4af37;
+            color: #1a1a1a;
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transform: rotate(5deg);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+        }
+
+        .menu-name {
+            font-size: 1.8rem;
+            color: #d4af37;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .menu-desc {
+            color: #c0c0c0;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+
+        .menu-price {
+            font-size: 1.5rem;
+            color: #f4e4c1;
+            font-weight: bold;
+        }
+
+        .category {
+            text-align: center;
+            font-size: 1.3rem;
+            color: #d4af37;
+            margin: 4rem 0 2rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            position: relative;
+        }
+
+        .category::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+            margin: 1rem auto;
+        }
+
+        footer {
+            background: #0a0a0a;
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid #d4af37;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            color: #d4af37;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .footer-text {
+            color: #888;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2.5rem;
+            }
+            
+            .tagline {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #d4af37;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="hero-content">
+            <h1 class="logo">Le Canard Noir</h1>
+            <p class="tagline">Bebek Terenak di Dunia</p>
+            <button class="cta-btn" onclick="document.getElementById('menu').scrollIntoView({behavior: 'smooth'})">
+                Lihat Menu Eksklusif
+            </button>
+        </div>
+        <div class="scroll-indicator">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+        </div>
+    </div>
+
+    <div class="section" id="menu">
+        <h2 class="section-title">Menu Signature</h2>
+        
+        <div class="category">🦆 Bebek Premium</div>
+        <div class="menu-grid">
+            <div class="menu-card">
+                <div class="bestseller">BEST SELLER</div>
+                <h3 class="menu-name">Bebek Sambal Hitam</h3>
+                <p class="menu-desc">Bebek premium dengan sambal hitam rahasia yang telah memenangkan penghargaan internasional. Dimasak dengan teknik sous vide dan difinishing dengan api arang premium, menghasilkan tekstur yang luar biasa lembut dengan rasa yang memukau setiap lapisan.</p>
+                <p class="menu-price">Rp 385.000</p>
+            </div>
+
+            <div class="menu-card">
+                <h3 class="menu-name">Bebek Confit Truffle</h3>
+                <p class="menu-desc">Bebek confit dengan sentuhan white truffle oil dari Piedmont, Italia. Dimasak selama 8 jam dalam rendang suhu rendah hingga mencapai kesempurnaan. Disajikan dengan kentang duchess dan reduction balsamic aged 25 tahun.</p>
+                <p class="menu-price">Rp 495.000</p>
+            </div>
+
+            <div class="menu-card">
+                <h3 class="menu-name">Bebek Peking Royal</h3>
+                <p class="menu-desc">Interpretasi modern dari hidangan klasik Tiongkok. Bebek dengan kulit yang sangat crispy, disajikan dengan pancake handmade, scallion julienne, dan hoisin sauce premium yang dibuat in-house dengan resep turun temurun.</p>
+                <p class="menu-price">Rp 425.000</p>
+            </div>
+
+            <div class="menu-card">
+                <h3 class="menu-name">Bebek Glazed Miso</h3>
+                <p class="menu-desc">Perpaduan sempurna antara Timur dan Barat. Bebek yang dimarinasi dengan miso berusia 3 tahun, kemudian di-glaze dengan madu Manuka dan sake premium. Tekstur karamelisasi yang sempurna di setiap gigitan.</p>
+                <p class="menu-price">Rp 365.000</p>
+            </div>
+        </div>
+
+        <div class="category">🍰 Dessert Selection</div>
+        <div class="menu-grid">
+            <div class="menu-card">
+                <h3 class="menu-name">Dark Chocolate Sphere</h3>
+                <p class="menu-desc">Sphere cokelat Valrhona 70% dengan sorbet raspberry di dalamnya. Disajikan dengan hot caramel yang dituangkan di meja, menciptakan pertunjukan teatrikal yang memukau sambil mengungkap isian lezat di dalamnya.</p>
+                <p class="menu-price">Rp 145.000</p>
+            </div>
+
+            <div class="menu-card">
+                <h3 class="menu-name">Tarte Tatin Moderne</h3>
+                <p class="menu-desc">Tarte tatin dengan apel Fuji karamelisasi sempurna, vanilla bean Madagascar, dan puff pastry yang renyah. Disajikan dengan es krim vanilla artisanal dan gold leaf 24 karat.</p>
+                <p class="menu-price">Rp 135.000</p>
+            </div>
+
+            <div class="menu-card">
+                <h3 class="menu-name">Matcha Opera</h3>
+                <p class="menu-desc">Layer cake klasik Prancis dengan sentuhan matcha ceremonial grade dari Kyoto. Kombinasi sempurna antara almond biscuit, white chocolate ganache, dan matcha buttercream yang lembut.</p>
+                <p class="menu-price">Rp 125.000</p>
+            </div>
+        </div>
+
+        <div class="category">🍸 Premium Beverages</div>
+        <div class="menu-grid">
+            <div class="menu-card">
+                <div class="bestseller">BEST SELLER</div>
+                <h3 class="menu-name">Espresso Martini</h3>
+                <p class="menu-desc">Koktail ikonik kami menggunakan triple shot espresso dari single origin Ethiopia, Grey Goose vodka, Kahlúa premium, dan gula simple yang di-infuse dengan vanilla Madagascar. Disajikan dengan coffee beans cokelat sebagai garnish.</p>
+                <p class="menu-price">Rp 185.000</p>
+            </div>
+
+            <div class="menu-card">
+                <h3 class="menu-name">Whisky Old Fashioned</h3>
+                <p class="menu-desc">Klasik yang timeless dengan Japanese whisky premium, angostura bitters, dan demerara syrup. Diaduk sempurna dengan es batu besar dan dihiasi dengan orange twist yang di-flame di meja.</p>
+                <p class="menu-price">Rp 225.000</p>
+            </div>
+
+            <div class="menu-card">
+                <h3 class="menu-name">Champagne Royale</h3>
+                <p class="menu-desc">Dom Pérignon dengan sentuhan cognac XO dan gula cube yang direndam dalam angostura bitters. Garnish dengan lemon twist 24k gold leaf untuk sentuhan kemewahan ultimate.</p>
+                <p class="menu-price">Rp 450.000</p>
+            </div>
+
+            <div class="menu-card">
+                <h3 class="menu-name">Matcha Latte Gold</h3>
+                <p class="menu-desc">Matcha ceremonial grade tertinggi dari Uji, Jepang, dipadu dengan oat milk organik dan disajikan dengan edible gold dust. Pengalaman matcha yang sesungguhnya untuk para konnoisseur.</p>
+                <p class="menu-price">Rp 95.000</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">Le Canard Noir</div>
+            <p class="footer-text">
+                Jl. Kemewahan Boulevard No. 88<br>
+                Jakarta Selatan 12950<br>
+                Reservasi: +62 21 8888 9999<br>
+                Email: reservation@lecanardnoir.id<br><br>
+                Buka Setiap Hari | 11:00 - 23:00 WIB<br>
+                Smart Casual Dress Code
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
